@@ -4,10 +4,9 @@ import pytz
 import smtplib
 import time
 
-# -7.129749, 112.726798
 
-MY_LAT = -7.129749 # Your latitude
-MY_LONG = 112.726798 # Your longitude
+MY_LAT = 000 # Your latitude
+MY_LONG = 000 # Your longitude
 
 
 parameters = {
@@ -57,15 +56,17 @@ def is_dark():
     return False
 
 def main():
-    my_email = 'bapakfarhan1212@gmail.com'
-    password = 'rninseujddsmhixl'
+    print("Checking ISS position and sky conditions...")
+    my_email = 'example@gmail.com'
+    password = 'xyzxyzxyz'
     if is_dark() and is_iss_near():
         with smtplib.SMTP('smtp.gmail.com', port=587) as connection:
             connection.starttls()
             connection.login(user=my_email, password=password)
             connection.sendmail(from_addr=my_email,
-                                to_addrs='fani8731507@gmail.com',
+                                to_addrs='example@gmail.com',
                                 msg="Subject:Look Up\n\nISS is over you!!!")
+        print("Email notification sent!")
 
 while True:
     time.sleep(60)
